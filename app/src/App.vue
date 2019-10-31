@@ -2,7 +2,10 @@
     <div id="app">
         <Menu/>
         <ScrollTop top="100"/>
-        <router-view></router-view>
+        <div class="container">
+            <h2>{{ $route.meta.title }}</h2>
+            <router-view></router-view>
+        </div>
     </div>
 </template>
 
@@ -15,7 +18,6 @@
 </style>
 
 <script>
-
     // @ is an alias to /src
     import Menu from '@/components/Menu.vue'
     import ScrollTop from '@/components/ScrollTop.vue'

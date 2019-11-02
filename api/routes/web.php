@@ -14,3 +14,7 @@
 $router->get('/', function () use ($router) {
     return $router->app->version();
 });
+
+$router->group(['prefix' => '/v1/heroes'], function () use ($router) {
+    $router->get('', 'HeroesController@index');
+});

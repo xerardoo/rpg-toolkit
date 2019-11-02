@@ -16,13 +16,13 @@ class CreateCharactersTable extends Migration
         Schema::create('characters', function (Blueprint $table) {
             $table->Increments('id');
             $table->string('firstname', 100);
-            $table->string('lastname', 100);
+            $table->string('lastname', 100)->nullable();
             $table->tinyInteger('type');
             $table->tinyInteger('level');
-            $table->unsignedInteger('racesid');
-            $table->unsignedInteger('classesid');
-            $table->unsignedInteger('weaponsid');
-            $table->unsignedInteger('picturesid');
+            $table->unsignedInteger('racesid')->nullable();
+            $table->unsignedInteger('classesid')->nullable();
+            $table->unsignedInteger('weaponsid')->nullable();
+            $table->unsignedInteger('picturesid')->nullable();
             $table->timestamps();
             $table->softDeletes();
 

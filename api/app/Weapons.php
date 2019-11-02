@@ -9,7 +9,9 @@
 namespace App;
 
 
-class Weapon
+use Illuminate\Database\Eloquent\Model;
+
+class Weapons extends Model
 {
 
 }

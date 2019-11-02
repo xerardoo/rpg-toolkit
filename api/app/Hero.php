@@ -10,14 +10,47 @@ namespace App;
 
 class Hero extends Characters
 {
-    public static function all(string $search = '', int $limit = 100, $offset = 0)
+    protected $table = 'characters';
+
+    protected $fillable = [
+        'firstname',
+        'lastname',
+        'type',
+        'level',
+        'racesid',
+        'classesid',
+        'weaponsid',
+    ];
+
+    /**
+     * Get the race associated with the hero.
+     */
+    public function race()
     {
-        return parent::getAll(parent::HERO, $search, $limit, $offset);
+        return $this->hasOne('App\Races', 'foreign_key', 'racesid');
     }
 
-    public static function count(string $search = '')
+    /**
+     * Get the race associated with the hero.
+     */
+    public function weapon()
     {
-        return parent::countAll(parent::HERO, $search);
+        return $this->hasOne('App\Weapons', 'foreign_key', 'weaponsid');
     }
 
+    /**
+     * Get the class associated with the hero.
+     */
+    public function clas()
+    {
+        return $this->hasOne('App\Classes', 'foreign_key', 'classesid');
+    }
+
+    /**
+     * Get stats associated with the hero.
+     */
+    public function stats()
+    {
+        //TODO
+    }
 }

@@ -15,6 +15,10 @@ $router->get('/', function () use ($router) {
     return $router->app->version();
 });
 
-$router->group(['prefix' => '/v1/heroes'], function () use ($router) {
+$router->group(['prefix' => '/api/v1/heroes'], function () use ($router) {
     $router->get('', 'HeroesController@index');
+    $router->get('/{id}', 'HeroesController@show');
+    $router->post('', 'HeroesController@store');
+    $router->put('/{id}', 'HeroesController@update');
+    $router->delete('/{id}', 'HeroesController@destroy');
 });

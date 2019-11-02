@@ -8,22 +8,14 @@
 
 namespace App;
 
-use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Characters
+class Characters extends Model
 {
+    use SoftDeletes;
+
     const HERO = 1, MONSTER = 2;
 
-    public static function getAll(int $type, string $search = '', int $limit = 100, $offset = 0)
-    {
-        return DB::table("characters")
-            ->whereRaw("(lastname LIKE '?%' OR firstname LIKE '?%') AND `type`=?", [$search, $search, $type])
-            ->limit($limit)->offset($offset)->get();
-    }
-
-    public static function countAll(int $type, string $search = '')
-    {
-        return DB::table("characters")
-            ->whereRaw("(lastname LIKE '?%' OR firstname LIKE '?%') AND `type`=?", [$search, $search, $type])->count();
-    }
+    protected $dates = ['deleted_at'];
 }

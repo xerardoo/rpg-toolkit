@@ -9,7 +9,9 @@
 namespace App;
 
 
-class Race
+use Illuminate\Database\Eloquent\Model;
+
+class Races extends Model
 {
 
 }

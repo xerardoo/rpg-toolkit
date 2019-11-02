@@ -9,7 +9,10 @@
 namespace App;
 
 
-class Classes
+use Illuminate\Database\Eloquent\Model;
+
+class Classes extends Model
 {
+
 
 }

@@ -6,9 +6,12 @@
  * Time: 6:57 PM
  */
 
+use Laravel\Lumen\Testing\DatabaseMigrations;
 
 class HeroesTest extends TestCase
 {
+    use DatabaseMigrations;
+
     /**
      * Hero creation test.
      *
@@ -20,9 +23,9 @@ class HeroesTest extends TestCase
             [
                 'firstname' => 'Superman',
                 'lastname' => 'Robbin',
-                'racesid' => '1',
-                'classesid' => '1',
-                'weaponsid' => '1',
+                'racesid' => 1,
+                'classesid' => 1,
+                'weaponsid' => 1,
             ]);
         $this->assertResponseStatus(201);
     }
@@ -38,9 +41,9 @@ class HeroesTest extends TestCase
             [
                 'firstname' => 'Clark',
                 'lastname' => 'Kent',
-                'racesid' => '2',
-                'classesid' => '2',
-                'weaponsid' => '2',
+                'racesid' => 2,
+                'classesid' => 2,
+                'weaponsid' => 2,
             ]);
         $this->assertResponseStatus(200);
     }
@@ -56,9 +59,9 @@ class HeroesTest extends TestCase
         $this->seeJson([
             'firstname' => 'Clark',
             'lastname' => 'Kent',
-            'racesid' => '2',
-            'classesid' => '2',
-            'weaponsid' => '2',
+            'racesid' => 2,
+            'classesid' => 2,
+            'weaponsid' => 2,
         ]);
         $this->assertResponseStatus(200);
     }
@@ -77,9 +80,9 @@ class HeroesTest extends TestCase
                 [[
                     'firstname' => 'Clark',
                     'lastname' => 'Kent',
-                    'racesid' => '2',
-                    'classesid' => '2',
-                    'weaponsid' => '2',
+                    'racesid' => 2,
+                    'classesid' => 2,
+                    'weaponsid' => 2,
                 ]]
         ]);
         $this->assertResponseStatus(200);

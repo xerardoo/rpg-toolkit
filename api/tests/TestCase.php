@@ -7,8 +7,11 @@ abstract class TestCase extends Laravel\Lumen\Testing\TestCase
      *
      * @return \Laravel\Lumen\Application
      */
+
+    public $API = '/api/v1';
+
     public function createApplication()
     {
-        return require __DIR__.'/../bootstrap/app.php';
+        return require __DIR__ . '/../bootstrap/app.php';
     }
 }

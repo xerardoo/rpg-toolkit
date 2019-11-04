@@ -97,4 +97,34 @@ class HeroesTest extends TestCase
         $this->DELETE($this->API . '/heroes/1');
         $this->assertResponseStatus(200);
     }
+
+    public function testGetRaces()
+    {
+        $this->GET($this->API . '/races');
+        $this->seeJson([[
+            'id' => 1,
+            'name' => 'Human',
+        ]]);
+        $this->assertResponseStatus(200);
+    }
+
+    public function testGetClasses()
+    {
+        $this->GET($this->API . '/classes');
+        $this->seeJson([[
+            'id' => 1,
+            'name' => 'Paladin',
+        ]]);
+        $this->assertResponseStatus(200);
+    }
+
+    public function testGetWeapons()
+    {
+        $this->GET($this->API . '/weapons');
+        $this->seeJson([[
+            'id' => 1,
+            'name' => 'Sword',
+        ]]);
+        $this->assertResponseStatus(200);
+    }
 }

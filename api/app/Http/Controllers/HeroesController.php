@@ -30,7 +30,7 @@ class HeroesController extends Controller
     {
         $hero = Hero::findOrFail($id);
 
-        return response()->json($hero, 201);
+        return response()->json($hero, 200);
     }
 
     public function store(Request $request)
@@ -45,7 +45,7 @@ class HeroesController extends Controller
             'lastname' => $request->get('lastname'),
             'level' => 1, // initial level for all heroes
             'racesid' => $request->get('racesid'),
-            'classessid' => $request->get('classessid'),
+            'classesid' => $request->get('classesid'),
             'weaponsid' => $request->get('weaponsid')
         ]);
         $hero->saveOrFail();
@@ -63,7 +63,7 @@ class HeroesController extends Controller
         $hero->firstname = $request->get('firstname');
         $hero->lastname = $request->get('lastname');
         $hero->racesid = $request->get('racesid');
-        $hero->classessid = $request->get('classessid');
+        $hero->classesid = $request->get('classesid');
         $hero->weaponsid = $request->get('weaponsid');
         $hero->saveOrFail();
 

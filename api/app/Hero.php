@@ -22,6 +22,14 @@ class Hero extends Characters
         'weaponsid',
     ];
 
+    protected $hidden = [
+        'type',
+        'picturesid',
+        'deleted_at',
+        'created_at',
+        'updated_at'
+    ];
+
     /**
      * Get the race associated with the hero.
      */

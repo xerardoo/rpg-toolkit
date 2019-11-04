@@ -6,12 +6,9 @@
  * Time: 6:57 PM
  */
 
-use Laravel\Lumen\Testing\DatabaseMigrations;
 
 class HeroesTest extends TestCase
 {
-    use DatabaseMigrations;
-
     /**
      * Hero creation test.
      *
@@ -74,12 +71,14 @@ class HeroesTest extends TestCase
     public function testGetAll()
     {
         $this->GET($this->API . '/heroes');
-        $this->seeJson([
-            'total' => '1',
+        $this->seeJsonEquals([
+            'total' => 1,
             'rows' =>
                 [[
+                    'id' => 1,
                     'firstname' => 'Clark',
                     'lastname' => 'Kent',
+                    'level' => 1,
                     'racesid' => 2,
                     'classesid' => 2,
                     'weaponsid' => 2,
@@ -87,7 +86,6 @@ class HeroesTest extends TestCase
         ]);
         $this->assertResponseStatus(200);
     }
-
 
     /**
      * Hero delete test.

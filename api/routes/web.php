@@ -15,6 +15,11 @@ $router->get('/', function () use ($router) {
     return $router->app->version();
 });
 
+
+$router->group(['prefix' => '/api/v1/dashboard'], function () use ($router) {
+    $router->get('/heroes', 'DashboardController@getHeroeStats');
+});
+
 $router->group(['prefix' => '/api/v1/heroes'], function () use ($router) {
     $router->get('/races', 'HeroesController@getRaces');
     $router->get('/classes', 'HeroesController@getClasses');
@@ -26,3 +31,5 @@ $router->group(['prefix' => '/api/v1/heroes'], function () use ($router) {
     $router->put('/{id}', 'HeroesController@update');
     $router->delete('/{id}', 'HeroesController@destroy');
 });
+
+

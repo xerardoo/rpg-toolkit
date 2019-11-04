@@ -8,6 +8,8 @@
 
 namespace App;
 
+use Illuminate\Support\Facades\DB;
+
 class Hero extends Characters
 {
     protected $table = 'characters';
@@ -60,5 +62,43 @@ class Hero extends Characters
     public function stats()
     {
         //TODO
+    }
+
+    public static function getTotal()
+    {
+        return self::count();
+    }
+
+    public static function getPopularRace()
+    {
+        $result = DB::table('characters')->select(DB::raw('`races`.`name`,COUNT(*)as total'))
+            ->where('characters.type', '=', self::HERO)
+            ->join('races', 'races.id', '=', 'characters.racesid')
+            ->groupBy('characters.racesid')->orderBy('total', 'DESC')->limit(1)->first();
+
+        if (is_null($result)) $result = (object)['name' => '', 'total' => 0];
+        return $result;
+    }
+
+    public static function getPopularClass()
+    {
+        $result = DB::table('characters')->select(DB::raw('`classes`.`name`,COUNT(*)as total'))
+            ->where('characters.type', '=', self::HERO)
+            ->join('classes', 'classes.id', '=', 'characters.classesid')
+            ->groupBy('characters.classesid')->orderBy('total', 'DESC')->limit(1)->first();
+
+        if (is_null($result)) $result = (object)['name' => '', 'total' => 0];
+        return $result;
+    }
+
+    public static function getPopularWeapons()
+    {
+        $result = DB::table('characters')->select(DB::raw('`weapons`.`name`,COUNT(*)as total'))
+            ->where('characters.type', '=', self::HERO)
+            ->join('weapons', 'weapons.id', '=', 'characters.weaponsid')
+            ->groupBy('characters.weaponsid')->orderBy('total', 'DESC')->limit(1)->first();
+
+        if (is_null($result)) $result = (object)['name' => '', 'total' => 0];
+        return $result;
     }
 }

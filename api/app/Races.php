@@ -13,5 +13,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Races extends Model
 {
+    protected $fillable = [
+        'id',
+        'name',
+    ];
 
+    protected $hidden = [
+        'type'
+    ];
 }

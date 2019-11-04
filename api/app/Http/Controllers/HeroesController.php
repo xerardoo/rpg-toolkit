@@ -8,6 +8,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Classes;
+use App\Races;
+use App\Weapons;
 use Illuminate\Http\Request;
 use App\Hero;
 
@@ -76,6 +79,24 @@ class HeroesController extends Controller
         $hero->delete();
 
         return response()->json(['msg' => 'Heroe Deleted'], 200);
+    }
+
+    public function getRaces()
+    {
+        $races = Races::where('type', '=', "1")->get();
+        return response()->json($races, 200);
+    }
+
+    public function getClasses()
+    {
+        $classes = Classes::all();
+        return response()->json($classes, 200);
+    }
+
+    public function getWeapons()
+    {
+        $weapons = Weapons::all();
+        return response()->json($weapons, 200);
     }
 
 

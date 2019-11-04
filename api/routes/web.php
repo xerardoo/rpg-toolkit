@@ -16,6 +16,10 @@ $router->get('/', function () use ($router) {
 });
 
 $router->group(['prefix' => '/api/v1/heroes'], function () use ($router) {
+    $router->get('/races', 'HeroesController@getRaces');
+    $router->get('/classes', 'HeroesController@getClasses');
+    $router->get('/weapons', 'HeroesController@getWeapons');
+
     $router->get('', 'HeroesController@index');
     $router->get('/{id}', 'HeroesController@show');
     $router->post('', 'HeroesController@store');

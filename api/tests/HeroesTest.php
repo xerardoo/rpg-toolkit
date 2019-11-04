@@ -100,31 +100,31 @@ class HeroesTest extends TestCase
 
     public function testGetRaces()
     {
-        $this->GET($this->API . '/races');
-        $this->seeJson([[
+        $this->GET($this->API . '/heroes/races');
+        $this->seeJson([
             'id' => 1,
             'name' => 'Human',
-        ]]);
+        ]);
         $this->assertResponseStatus(200);
     }
 
     public function testGetClasses()
     {
-        $this->GET($this->API . '/classes');
-        $this->seeJson([[
+        $this->GET($this->API . '/heroes/classes');
+        $this->seeJson([
             'id' => 1,
             'name' => 'Paladin',
-        ]]);
+        ]);
         $this->assertResponseStatus(200);
     }
 
     public function testGetWeapons()
     {
-        $this->GET($this->API . '/weapons');
-        $this->seeJson([[
+        $this->GET($this->API . '/heroes/weapons');
+        $this->seeJson([
             'id' => 1,
             'name' => 'Sword',
-        ]]);
+        ]);
         $this->assertResponseStatus(200);
     }
 }

@@ -1,10 +1,10 @@
 <template>
     <div>
-        <div class="row">
-            <div class="col-md-1 offset-md-9">
-                <button class="btn btn-danger" @click="onDelete">Delete</button>
-            </div>
-        </div>
+        <!--<div class="row">-->
+            <!--<div class="col-md-1 offset-md-9">-->
+                <!--<button class="btn btn-danger" @click="onDelete">Delete</button>-->
+            <!--</div>-->
+        <!--</div>-->
         <div class="row">
             <div class="col-md-2">
                 <div class="level">
@@ -68,7 +68,8 @@
                     </div>
 
                     <div class="form-group row">
-                        <div class="offset-md-9 col-md-3">
+                        <div class="offset-md-8 col-md-4">
+                            <button type="button" class="btn btn-danger" @click="onDelete">Delete</button>
                             <button type="reset" class="btn btn-secondary">Discard</button>
                             <button type="submit" class="btn btn-primary ml-1">Save</button>
                         </div>

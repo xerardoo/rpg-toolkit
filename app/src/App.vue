@@ -1,7 +1,7 @@
 <template>
     <div id="app">
         <Menu/>
-        <ScrollTop top="100"/>
+        <ScrollTop top="10"/>
         <div class="container">
             <h2>{{ $route.meta.title }}</h2>
             <router-view></router-view>
@@ -14,6 +14,7 @@
         font-family: 'Avenir', Helvetica, Arial, sans-serif;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
+        height: 900px;
     }
 </style>
 

@@ -1,6 +1,6 @@
 <template>
     <div>
-        <a name="" id="" class="btn primary" href="/heroes/new" role="button">New</a>
+        <a name="" id="" class="btn btn-primary" href="/heroes/new" role="button">New</a>
         <div id="table">
             <bootstrap-table :columns="columns" :data="data" :options="options"></bootstrap-table>
         </div>

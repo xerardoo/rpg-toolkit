@@ -11,7 +11,7 @@
 5. On console run migrations `php artisan migrate`
 and after run seeders `php db:seed`
 6. Execute web service `php -S localhost:8081 -t public`
-7. Open a new session on console move to 'app' folder 
+7. Open a new session on console and move to 'app' folder 
 8. Run `npm install`
 9. Run `npm run serve -- --port 8080`
 10. Open a web browser [http://localhost:8080](http://localhost:8080)

@@ -56,19 +56,18 @@ Pictures
 - POST /heroes 
 - PUT /heroes/:id
 - DEL /heroes/:id
+- GET /heroes/races
+- GET /heroes/classes
+- GET /heroes/weapons
+
 
 - GET /monsters
 - GET /monsters/:id [0=random]
 - POST /monsters 
 - PUT /monsters/:id
 - DEL /monsters/:id
-
-- GET /firstnames
-- GET /lastnames
-- GET /races?type=[1=heroe,2=monster]
-- GET /classes
-- GET /weapons
-- GET /powers
+- GET /monsters/abilities
+- GET /monsters/races
 
 ----------------------
 # Notes

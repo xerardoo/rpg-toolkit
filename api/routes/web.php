@@ -18,6 +18,7 @@ $router->get('/', function () use ($router) {
 
 $router->group(['prefix' => '/api/v1/dashboard'], function () use ($router) {
     $router->get('/heroes', 'DashboardController@getHeroeStats');
+    $router->get('/monsters', 'DashboardController@getMonsterStats');
 });
 
 $router->group(['prefix' => '/api/v1/heroes'], function () use ($router) {

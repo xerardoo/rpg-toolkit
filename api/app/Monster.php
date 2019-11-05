@@ -56,4 +56,16 @@ class Monster extends Characters
         return $result;
     }
 
+    public static function getPopularAbility()
+    {
+        $result = DB::table('characters_abilities')->select(DB::raw('`abilities`.`name`,COUNT(*)as total'))
+            ->where('characters.type', '=', self::MONSTER)
+            ->join('abilities', 'abilities.id', '=', 'characters_abilities.abilitiesid')
+            ->join('characters', 'characters.id', '=', 'characters_abilities.charactersid')
+            ->groupBy('characters_abilities.abilitiesid')->orderBy('total', 'DESC')->limit(1)->first();
+
+        if (is_null($result)) $result = (object)['name' => '', 'total' => 0];
+        return $result;
+    }
+
 }

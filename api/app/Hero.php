@@ -66,7 +66,7 @@ class Hero extends Characters
 
     public static function getTotal()
     {
-        return self::count();
+        return self::where('type', '=', self::HERO)->count();
     }
 
     public static function getPopularRace()

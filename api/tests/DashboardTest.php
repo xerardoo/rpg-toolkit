@@ -30,21 +30,21 @@ class DashboardTest extends TestCase
         $this->assertResponseStatus(200);
     }
 
-//    public function testGetStatsMonsters()
-//    {
-//        $this->GET($this->API . '/dashboard/monsters');
-//        $this->seeJson([
-//            'count' => 1,
-//            'popular-race' => [
-//                'count' => 1,
-//                'name' => 'Beholder'
-//            ],
-//            'popular-ability' => [
-//                'count' => 1,
-//                'name' => 'Shadow Ball'
-//            ],
-//
-//        ]);
-//        $this->assertResponseStatus(200);
-//    }
+    public function testGetStatsMonsters()
+    {
+        $this->GET($this->API . '/dashboard/monsters');
+        $this->seeJson([
+            'count' => 1,
+            'popular-race' => [
+                'count' => 1,
+                'name' => 'Beholder'
+            ],
+            'popular-ability' => [
+                'count' => 1,
+                'name' => 'Shadow Ball'
+            ],
+
+        ]);
+        $this->assertResponseStatus(200);
+    }
 }

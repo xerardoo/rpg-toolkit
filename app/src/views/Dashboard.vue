@@ -39,7 +39,7 @@
                 <div class="card">
                     <div class="card-body text-center">
                         <h4 class="card-title">Available Monsters</h4>
-                        <h3><span class="badge badge-primary">999</span></h3>
+                        <h3><span class="badge badge-primary">{{monsterstats.count}}</span></h3>
                     </div>
                 </div>
             </div>
@@ -47,7 +47,7 @@
                 <div class="card">
                     <div class="card-body text-center">
                         <h4 class="card-title">Popular Monster Race</h4>
-                        <h3><span class="badge badge-primary">XXXXX XXXXX</span></h3>
+                        <h3><span class="badge badge-primary">{{monsterstats["popular-race"].name}}</span></h3>
                     </div>
                 </div>
             </div>
@@ -55,7 +55,7 @@
                 <div class="card">
                     <div class="card-body text-center">
                         <h4 class="card-title">Popular Monster Ability</h4>
-                        <h3><span class="badge badge-primary">XXXXX XXXXX</span></h3>
+                        <h3><span class="badge badge-primary">{{monsterstats["popular-ability"].name}}</span></h3>
                     </div>
                 </div>
             </div>
@@ -70,6 +70,7 @@
         name: 'Dashboard',
         mounted() {
             this.getHeroStats();
+            this.getMonsterStats();
         },
         data() {
             return {
@@ -87,6 +88,17 @@
                         'count': 0,
                         'name': '',
                     },
+                },
+                'monsterstats': {
+                    'count': 0,
+                    'popular-race': {
+                        'count': 0,
+                        'name': '',
+                    },
+                    'popular-ability': {
+                        'count': 0,
+                        'name': '',
+                    }
                 }
             }
         },
@@ -95,6 +107,13 @@
                 Axios.get(`${this.APIHOST }/dashboard/heroes`)
                     .then(response => {
                         this.herostats = response.data
+                    })
+                    .catch(error => console.log(error))
+            },
+            getMonsterStats() {
+                Axios.get(`${this.APIHOST }/dashboard/monsters`)
+                    .then(response => {
+                        this.monsterstats = response.data
                     })
                     .catch(error => console.log(error))
             },

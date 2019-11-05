@@ -22,33 +22,39 @@
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label for="firstName" class="col-form-label">First Name:</label>
-                        <input type="text" class="form-control" id="firstName" v-model="form.firstName" placeholder=""
+                        <input type="text" class="form-control" id="firstName" v-model="form.firstname" placeholder=""
                                required>
                     </div>
 
                     <div class="form-group col-md-6">
                         <label for="lastName" class="col-form-label">Last Name:</label>
-                        <input type="text" class="form-control" id="lastName" v-model="form.lastName" placeholder="">
+                        <input type="text" class="form-control" id="lastName" v-model="form.lastname" placeholder="">
                     </div>
                 </div>
 
                 <div class="form-row">
                     <div class="form-group col-md-4">
                         <label for="race">Race:</label>
-                        <select class="form-control" name="" id="race">
-                            <option>-</option>
+                        <select class="form-control" v-model="form.racesid" name="" id="race">
+                            <option v-for="race in races" v-bind:value="race.id" :key="race.id">
+                                {{race.name}}
+                            </option>
                         </select>
                     </div>
                     <div class="form-group col-md-4">
                         <label for="class">Class:</label>
-                        <select class="form-control" name="" id="class">
-                            <option>-</option>
+                        <select class="form-control" v-model="form.classesid" name="" id="class">
+                            <option v-for="clas in classes" v-bind:value="clas.id" :key="clas.id">
+                                {{clas.name}}
+                            </option>
                         </select>
                     </div>
                     <div class="form-group col-md-4">
                         <label for="weapon">Weapon:</label>
-                        <select class="form-control" name="" id="weapon">
-                            <option>-</option>
+                        <select class="form-control" v-model="form.weaponsid" name="" id="weapon">
+                            <option v-for="weapon in weapons" v-bind:value="weapon.id" :key="weapon.id">
+                                {{weapon.name}}
+                            </option>
                         </select>
                     </div>
                 </div>
@@ -65,24 +71,88 @@
 </template>
 
 <script>
+    import Axios from 'axios'
+
     export default {
         name: "Hero",
+
+        mounted() {
+            let param = this.$route.params.id;
+            if (param !== 'new')
+                Axios.get(`${this.APIHOST }/heroes/${param}`)
+                    .then(response => {
+                        this.form = response.data
+                    })
+                    .catch(error => console.log(error));
+
+            this.loadRaces();
+            this.loadClasses();
+            this.loadWeapons();
+        },
+
         data() {
             return {
+                races: [],
+                classes: [],
+                weapons: [],
                 form: {
-                    firstName: "",
-                    lastName: "",
+                    id: null,
+                    firstname: "",
+                    lastname: "",
                     level: "",
-                    race: "",
-                    class: "",
+                    racesid: "",
+                    classesid: "",
                     weapon: "",
                 }
             }
         },
         methods: {
+            loadRaces() {
+                Axios.get(`${this.APIHOST }/heroes/races`)
+                    .then(response => {
+                        this.races = response.data
+                    })
+                    .catch(error => console.log(error))
+            },
+            loadClasses() {
+                Axios.get(`${this.APIHOST }/heroes/classes`)
+                    .then(response => {
+                        this.classes = response.data
+                    })
+                    .catch(error => console.log(error))
+            },
+            loadWeapons() {
+                Axios.get(`${this.APIHOST }/heroes/weapons`)
+                    .then(response => {
+                        this.weapons = response.data
+                    })
+                    .catch(error => console.log(error))
+            },
             onSubmit(e) {
                 e.preventDefault();
-                console.log("submit")
+
+                let payload = {
+                    'firstname': this.form.firstname,
+                    'lastname': this.form.lastname,
+                    'racesid': this.form.racesid,
+                    'classesid': this.form.classesid,
+                    'weaponsid': this.form.weaponsid,
+                };
+
+                if (!this.form.id)
+                    Axios.post(`${this.APIHOST}/heroes`, payload)
+                        .then(response => {
+                            console.log(response.data);
+                            alert("success");
+                        })
+                        .catch(error => console.log(error));
+                else
+                    Axios.put(`${this.APIHOST}/heroes/${this.form.id}`, payload)
+                        .then(response => {
+                            console.log(response.data);
+                            alert("success");
+                        })
+                        .catch(error => console.log(error));
             }
         }
     }

@@ -1,5 +1,6 @@
 <template>
     <div>
+        <a name="" id="" class="btn primary" href="/heroes/new" role="button">New</a>
         <div id="table">
             <bootstrap-table :columns="columns" :data="data" :options="options"></bootstrap-table>
         </div>
@@ -64,7 +65,7 @@
 
                 ],
                 options: {
-                    // url:"",
+                    url: this.APIHOST + '/heroes',
                     search: true,
                     showColumns: true,
                     sidePagination: 'server',

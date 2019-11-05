@@ -22,9 +22,9 @@ class HeroesController extends Controller
         $limit = $request->get('limit', 100);
         $offset = $request->get('offset', 0);
 
-        $heroes = Hero::where('lastname', 'LIKE', "$search%")->where('firstname', 'LIKE', "$search%")
+        $heroes = Hero::where('lastname', 'LIKE', "$search%")->where('firstname', 'LIKE', "$search%")->where('type', '=', Hero::HERO)
             ->limit($limit)->offset($offset)->get();
-        $total = Hero::where('lastname', 'LIKE', "$search%")->where('firstname', 'LIKE', "$search%")->count();
+        $total = Hero::where('lastname', 'LIKE', "$search%")->where('firstname', 'LIKE', "$search%")->where('type', '=', Hero::HERO)->count();
 
         return response()->json(['rows' => $heroes, 'total' => $total], 200);
     }
